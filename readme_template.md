@@ -1,6 +1,20 @@
+----
+**Take Note!**  This version of the Hosts file generator, and tests, are for Python 3.5+ only.
+
+----
+
 ![readme](https://user-images.githubusercontent.com/36028424/40330477-9df2c2e0-5d7f-11e8-8ac8-511d719a5eae.png)
 
+[![latest release](https://img.shields.io/github/release/StevenBlack/hosts.svg)](https://github.com/StevenBlack/hosts/releases)
+[![license](https://img.shields.io/github/license/StevenBlack/hosts.svg)](https://github.com/StevenBlack/hosts/blob/master/license.txt)
+[![repo size](https://img.shields.io/github/repo-size/StevenBlack/hosts.svg)](https://github.com/StevenBlack/hosts)
+[![contributors](https://img.shields.io/github/contributors/StevenBlack/hosts.svg)](https://github.com/StevenBlack/hosts/graphs/contributors)
 [![Build Status](https://travis-ci.org/StevenBlack/hosts.svg?branch=master)](https://travis-ci.org/StevenBlack/hosts)
+
+[![commits since last release](https://img.shields.io/github/commits-since/StevenBlack/hosts/latest.svg)](https://github.com/StevenBlack/hosts/commits/master)
+[![last commit](https://img.shields.io/github/last-commit/StevenBlack/hosts.svg)](https://github.com/StevenBlack/hosts/commits/master)
+[![commit activity](https://img.shields.io/github/commit-activity/y/StevenBlack/hosts.svg)](https://github.com/StevenBlack/hosts/commits/master)
+
 
 # Unified hosts file @EXTENSIONS_HEADER@
 
@@ -9,7 +23,7 @@ into a unified hosts file with duplicates removed.  A variety of tailored hosts 
 
 * Last updated: **@GEN_DATE@**.
 * Here's the [raw hosts file @EXTENSIONS_HEADER@](https://raw.githubusercontent.com/StevenBlack/hosts/master/@SUBFOLDER@hosts) containing @NUM_ENTRIES@ entries.
-* Logo by @Tobaloidee
+* Logo by [@Tobaloidee](https://github.com/Tobaloidee).
 
 
 ### List of all hosts file variants
@@ -38,44 +52,37 @@ Host file source | Description | Home page | Raw hosts | Update frequency | Lice
 ## Extensions
 The unified hosts file is extensible.  Extensions are used to block domains by category.  
 
-Extensions are optional, and are added to the base hosts file.  Extensions are combined in variuous ways wth the default hosts file, and the combined products are stored in the [`alternates`](https://github.com/StevenBlack/hosts/tree/master/alternates) folder.
+Extensions are optional, and are added to the base hosts file.  Extensions are combined in various ways wth the default hosts file, and the combined products are stored in the [`alternates`](https://github.com/StevenBlack/hosts/tree/master/alternates) folder.
 
-For example, you may want to block porn domains in addition to the adware and malware we block by default.  That hosts file is stored in the porn subfolder of the [alternates](https://github.com/StevenBlack/hosts/tree/master/alternates) folder.  
+For example, you may want to block porn domains in addition to the adware and malware we block by default.  That hosts file is stored in the porn subfolder of the [`alternates`](https://github.com/StevenBlack/hosts/tree/master/alternates) folder.  
 
-Data for extensions is stored in the [extensions folder](https://github.com/StevenBlack/hosts/tree/master/extensions). You manage extensions by curating the
-[extensions folder tree](https://github.com/StevenBlack/hosts/tree/master/extensions) where you will find the data for `fakenews`, `social`, `gambling`, and `porn` extension data that we maintain and provide for you.
+Data for extensions is stored in the [`extensions`](https://github.com/StevenBlack/hosts/tree/master/extensions) folder. You manage extensions by curating the
+[`extensions`](https://github.com/StevenBlack/hosts/tree/master/extensions)  folder tree where you will find the data for `fakenews`, `social`, `gambling`, and `porn` extension data that we maintain and provide for you.
 
 ## Generate your own unified hosts file
 
-**Note** if you are using Python 3, please install the dependencies with:
+To generate your own unified hosts file you will need Python 3.5 or later.
+
+First install the dependencies with:
 
     pip3 install --user -r requirements.txt
-
-**Note** if you are using Python 2, please install the dependencies with:
-
-    pip2 install --user -r requirements_python2.txt
 
 **Note** we recommend the `--user` flag which installs the required dependencies at the user level. More information about it can be found on pip [documentation](https://pip.pypa.io/en/stable/reference/pip_install/?highlight=--user#cmdoption-user).
 
 To run unit tests, in the top level directory, just run:
 
-    python testUpdateHostsFile.py
+    python3 testUpdateHostsFile.py
 
-The `updateHostsFile.py` script, which is Python 2.7 and Python 3-compatible,
-will generate a unified hosts file based on the sources in the local `data/`
-subfolder.  The script will prompt you whether it should fetch updated
-versions (from locations defined by the `update.json` text file in each
-source's folder). Otherwise, it will use the `hosts` file that's already there.
+The `updateHostsFile.py` script will generate a unified hosts file based on the sources in the 
+local `data/` subfolder.  The script will prompt you whether it should fetch updated versions 
+(from locations defined by the `update.json` text file in each source's folder). Otherwise, it 
+will use the `hosts` file that's already there.
 
 ### Usage
 
 #### Using Python 3:
 
     python3 updateHostsFile.py [--auto] [--replace] [--ip nnn.nnn.nnn.nnn] [--extensions ext1 ext2 ext3]
-
-#### Using Python 2.7:
-
-    python updateHostsFile.py [--auto] [--replace] [--ip nnn.nnn.nnn.nnn] [--extensions ext1 ext2 ext3]
 
 #### Command line options:
 
@@ -103,9 +110,8 @@ Only active when `--replace` is also active.
 `--ip nnn.nnn.nnn.nnn`, or `-i nnn.nnn.nnn.nnn`: the IP address to use as the
 target.  Default is `0.0.0.0`.
 
-`--keepdomaincomments`, or `-k`: `false` (default) or `true`, keep the comments
-that appear on the same line as domains.  The default is `false` since some
-router-based implementations can't handle comments in-line with hosts.
+`--keepdomaincomments`, or `-k`: `true` (default) or `false`, keep the comments
+that appear on the same line as domains.  The default is `true`.
 
 `--noupdate`, or `-n`: skip fetching updates from hosts data sources.
 
@@ -181,11 +187,11 @@ Fork this hosts this repo and add your links to [https://github.com/StevenBlack/
 
 Then, submit a pull request.
 
-**WARNING**: this is less desireable than Option 1 because the ongoing curation falls on us and what you've just done is created more work for us.
+**WARNING**: this is less desirable than Option 1 because the ongoing curation falls on us and what you've just done is created more work for us.
 
 ### Option 3: create your own hosts list as a repo on Github
 
-If you're able to curate your own collection of sketchy domains, then curate your own hosts list.  Then signal the existance of your remo as [a new issue](https://github.com/StevenBlack/hosts/issues) and we may include your new repo into the collection of sources we pull whenever we create new versions.
+If you're able to curate your own collection of sketchy domains, then curate your own hosts list.  Then signal the existence of your repo as [a new issue](https://github.com/StevenBlack/hosts/issues) and we may include your new repo into the collection of sources we pull whenever we create new versions.
 
 
 ## What is a hosts file?
@@ -230,9 +236,9 @@ We tried that.  Using `0` doesn't work universally.
 To modify your current `hosts` file, look for it in the following places and modify it with a text
 editor.
 
-**Mac OS X, iOS, Android, Linux**: `/etc/hosts` folder.
+**Mac OS X, iOS, Android, Linux**: `/etc/hosts` file.
 
-**Windows**: `%SystemRoot%\system32\drivers\etc\hosts` folder.
+**Windows**: `%SystemRoot%\system32\drivers\etc\hosts` file.
 
 ## Updating hosts file on Windows
 
@@ -293,7 +299,9 @@ sc stop "Dnscache"
 
 Open a Terminal and run with root privileges:
 
-**Debian/Ubuntu** `sudo /etc/rc.d/init.d/nscd restart`
+**Debian/Ubuntu** `sudo service network-manager restart`
+
+**Linux Mint** `sudo /etc/init.d/dns-clean start`
 
 **Linux with systemd**: `sudo systemctl restart network.service`
 
@@ -304,6 +312,21 @@ Open a Terminal and run with root privileges:
 **Arch Linux/Manjaro with Wicd**: `sudo systemctl restart wicd.service`
 
 **RHEL/Centos**: `sudo /etc/init.d/network restart`
+
+**FreeBSD**: `sudo service nscd restart`
+
+To enable the `nscd` daemon initially, it is recommended that you run the following commands:
+
+```
+sudo sysrc nscd_enable="YES"
+sudo service nscd start
+```
+
+Then modify the `hosts` line in your `/etc/nsswitch.conf` file to the following:
+
+```
+hosts: cache files dns
+```
 
 **Others**: Consult [this wikipedia article](https://en.wikipedia.org/wiki/Hosts_%28file%29#Location_in_the_file_system).
 
@@ -350,6 +373,8 @@ devices under a variety of operating systems.
 * [Unified Hosts AutoUpdate](https://github.com/ScriptTiger/Unified-Hosts-AutoUpdate "Unified Hosts AutoUpdate") (for Windows): The Unified Hosts AutUpdate package is purpose-built for this unified hosts project as well as in active development by community members. It's sophisticated enough to allow any novice the ability to install and uninstall the blacklist of their choosing to their local hosts file and keep it automatically up to date, while also being minimal enough to be able to be easily placed in a shared network location and deployed across an organization via group policies. And since it is in active development by community members, your bug reports, feature requests, and other feedback are most welcome.
 
 ## Interesting Applications
+
+* [Pi-hole](https://pi-hole.net/) is a network-wide DHCP server and ad blocker that runs on [Raspberry Pi](https://en.wikipedia.org/wiki/Raspberry_Pi). Pi-hole uses this repository as one of its sources.     This is a very interesting project to setup yourself, or you can [buy one pre-loaded](https://uk.pi-supply.com/products/pi-hole-kit-network-wide-ad-blocker).
 
 * [Block ads and malware via local BIND9 DNS server](https://github.com/mueller-ma/block-ads-via-dns "Block ads and malware via local DNS server") (for Debian, Raspbian & Ubuntu): Set up a local DNS server with a `/etc/bind/named.conf.blocked` file, sourced from here.
 
